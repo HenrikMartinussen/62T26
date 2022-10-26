@@ -1,0 +1,7 @@
+/target
+*.iml
+*.log
+debug.log
+.idea
+logs.txt
+/build

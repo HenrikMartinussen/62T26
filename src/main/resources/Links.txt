@@ -1,0 +1,7 @@
+https://en.wikipedia.org/wiki/Playing_card#French-suited_decks
+https://en.wikipedia.org/wiki/Playing_card_suit
+https://en.wikipedia.org/wiki/Standard_52-card_deck
+https://www.fileformat.info/info/unicode/char/2663/index.htm
+https://en.wikipedia.org/wiki/Glossary_of_patience_terms
+https://playingcarddecks.com/blogs/how-to-play/solitaire-game-rules
+// https://www.baeldung.com/java-enum-values
