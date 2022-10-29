@@ -6,3 +6,5 @@ https://en.wikipedia.org/wiki/Glossary_of_patience_terms
 https://playingcarddecks.com/blogs/how-to-play/solitaire-game-rules
 // https://www.baeldung.com/java-enum-values
 https://youtu.be/jl_fRf0PIDU
+
+https://stackoverflow.com/questions/14699441/getclass-getresourceasstream-in-maven-project

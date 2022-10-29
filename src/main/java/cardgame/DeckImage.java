@@ -15,7 +15,7 @@ public class DeckImage {
     private final int DESTINATION_HEIGHT = 147;
     private final int offset = 30;
     private final int margin = 30;
-    private static final String LOCATION = "/resources/cards.png";
+    private static final String LOCATION = "/cards.png";
     private BufferedImage deckImage;
 
     DeckImage() {
@@ -36,3 +36,5 @@ public class DeckImage {
         return image;
     }
 }
+
+// https://stackoverflow.com/questions/14699441/getclass-getresourceasstream-in-maven-project

@@ -50,32 +50,6 @@ public class MainWindow {
         frame.getContentPane().setLayout(null); // allows for absolute placement of content in the pane
 
         JLabel cardLabel1 = new JLabel("Image goes here");
-        cardLabel1.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("click!");
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
         cardLabel1.setBounds(10, 11, 100, 147);
         frame.getContentPane().add(cardLabel1);
 
