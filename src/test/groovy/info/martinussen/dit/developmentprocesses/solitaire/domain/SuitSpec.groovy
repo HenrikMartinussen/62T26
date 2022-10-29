@@ -1,9 +1,12 @@
 package info.martinussen.dit.developmentprocesses.solitaire.domain
 
-import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Color
-import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Suit
+
 import spock.lang.Specification
 import spock.lang.Unroll
+
+import static info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Color.BLACK
+import static info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Color.RED
+import static info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Suit.*
 
 class SuitSpec extends Specification {
 
@@ -13,11 +16,24 @@ class SuitSpec extends Specification {
         suit.color == color
 
         where:
-        suit          | color
-        Suit.DIAMONDS | Color.RED
-        Suit.CLUBS    | Color.BLACK
-        Suit.HEARTS   | Color.RED
-        Suit.SPADES   | Color.BLACK
+        suit     | color
+        SPADES   | BLACK
+        HEARTS   | RED
+        DIAMONDS | RED
+        CLUBS    | BLACK
+    }
+
+    @Unroll
+    def 'Suit #suit have ordinal value #expectedOrdinalValue'() {
+        expect:
+        suit.ordinal() == expectedOrdinalValue
+
+        where:
+        suit     | expectedOrdinalValue
+        SPADES   | 0
+        HEARTS   | 1
+        DIAMONDS | 2
+        CLUBS    | 3
     }
 
 

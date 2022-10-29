@@ -1,17 +1,18 @@
-package cardgame;
+package info.martinussen.dit.developmentprocesses.solitaire.ui;
+
+import info.martinussen.dit.developmentprocesses.solitaire.domain.DeckOfCards;
+import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCard;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class MainWindow {
 
-    Random random = new Random();
+    DeckOfCards deckOfCards;
 
     private JFrame frame;
 
@@ -37,6 +38,7 @@ public class MainWindow {
      * Create the application
      */
     public MainWindow() {
+        deckOfCards = new DeckOfCards().shuffle();
         initialize();
     }
 
@@ -67,15 +69,12 @@ public class MainWindow {
         btnNewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int suit1 = random.nextInt(4);
-                int ordinal1 = random.nextInt(13);
-                BufferedImage cardImage1 = deckImage.getImage(suit1, ordinal1);
+                PlayingCard playingCard1 = deckOfCards.draw();
+                BufferedImage cardImage1 = deckImage.getImage(playingCard1);
                 cardLabel1.setIcon(new ImageIcon(cardImage1));
 
-                int suit2 = random.nextInt(4);
-                int ordinal2 = random.nextInt(13);
-
-                BufferedImage cardImage2 = deckImage.getImage(suit2, ordinal2);
+                PlayingCard playingCard2 = deckOfCards.draw();
+                BufferedImage cardImage2 = deckImage.getImage(playingCard2);
                 cardLabel2.setIcon(new ImageIcon(cardImage2));
 
             }

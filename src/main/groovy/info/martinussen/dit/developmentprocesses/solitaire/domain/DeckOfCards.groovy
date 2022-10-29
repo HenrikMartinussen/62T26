@@ -9,7 +9,7 @@ class DeckOfCards {
 
     DeckOfCards(){
         cards = [] // shorthand for new ArrayList()
-        (Suit.DIAMONDS..Suit.SPADES).each{ suit ->
+        (Suit.SPADES..Suit.CLUBS).each{ suit ->
             (Rank.ACE..Rank.KING).each{ rank ->
                 cards << new PlayingCard(rank, suit)
             }

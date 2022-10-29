@@ -38,7 +38,7 @@ class StockPileSpec extends Specification {
         and: 'it should be possible to peek the topmost though cards are face down'
         def cardInformation = stockPile.peek()
         cardInformation.rank == Rank.KING
-        cardInformation.suit == Suit.SPADES
+        cardInformation.suit == Suit.CLUBS
 
         and: 'when you take the topmost card it is turned face up'
         def card = stockPile.takeCard()

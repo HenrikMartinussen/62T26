@@ -59,7 +59,7 @@ class WastePileSpec extends Specification {
 
         and:
         def topMostCard = wastePile.takeCard()
-        assert topMostCard.suit == Suit.SPADES
+        assert topMostCard.suit == Suit.CLUBS
         assert topMostCard.rank == Rank.KING
     }
 

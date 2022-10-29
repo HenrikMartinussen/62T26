@@ -164,10 +164,10 @@ class PlayingCardSpec extends Specification{
         cards.sort()
 
         then:
-        cards == [new PlayingCard(Rank.ACE, Suit.DIAMONDS),
-                  new PlayingCard(Rank.ACE, Suit.CLUBS),
+        cards == [new PlayingCard(Rank.ACE, Suit.SPADES),
                   new PlayingCard(Rank.ACE, Suit.HEARTS),
-                  new PlayingCard(Rank.ACE, Suit.SPADES)]
+                  new PlayingCard(Rank.ACE, Suit.DIAMONDS),
+                  new PlayingCard(Rank.ACE, Suit.CLUBS),]
     }
 
 

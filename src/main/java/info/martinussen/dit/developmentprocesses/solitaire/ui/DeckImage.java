@@ -1,4 +1,6 @@
-package cardgame;
+package info.martinussen.dit.developmentprocesses.solitaire.ui;
+
+import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCard;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -27,9 +29,9 @@ public class DeckImage {
         }
     }
 
-    BufferedImage getImage(int row, int column) {
-        int sourceX = offset + (column * (SOURCE_WIDTH + margin));
-        int sourceY = offset + (row    * (SOURCE_HEIGHT + margin));
+    BufferedImage getImage(PlayingCard playingCard) {
+        int sourceX = offset + (playingCard.getRank().ordinal() * (SOURCE_WIDTH + margin));
+        int sourceY = offset + (playingCard.getSuit().ordinal() * (SOURCE_HEIGHT + margin));
         BufferedImage image = new BufferedImage(DESTINATION_WIDTH, DESTINATION_HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics g = image.createGraphics();
         g.drawImage(deckImage, 0, 0, DESTINATION_WIDTH, DESTINATION_HEIGHT, sourceX, sourceY, sourceX + SOURCE_WIDTH, sourceY + SOURCE_HEIGHT, null);

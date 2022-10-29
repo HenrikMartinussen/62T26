@@ -32,7 +32,7 @@ class DeckOfCardsSpec extends Specification{
 
         then:
         drawnCards.size() == 52
-        drawnCards.suit.unique().sort()                             == [Suit.DIAMONDS, Suit.CLUBS, Suit.HEARTS, Suit.SPADES]
+        drawnCards.suit.unique().sort()                             == [Suit.SPADES, Suit.HEARTS, Suit.DIAMONDS, Suit.CLUBS]
         drawnCards.suit.unique().collect{it.color}.unique().sort()  == [Color.RED, Color.BLACK]
         drawnCards.rank.unique().collect{it.symbol}.unique().sort() == ['10', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'J', 'K', 'Q']
     }
