@@ -20,8 +20,7 @@ class FaceUpImageResolverStrategy implements ImageResolverStrategy {
         def sourceY = mummy.OFFSET + (playingCard.getSuit().ordinal() * (mummy.SOURCE_HEIGHT + mummy.MARGIN))
         returnValue = new BufferedImage(mummy.DESTINATION_WIDTH, mummy.DESTINATION_HEIGHT, BufferedImage.TYPE_INT_RGB)
         Graphics g = returnValue.createGraphics()
-      //g.drawImage(mummy.deckImage, 0, 0, mummy.DESTINATION_WIDTH, mummy.DESTINATION_HEIGHT, sourceX, sourceY, sourceX + mummy.SOURCE_WIDTH, sourceY + mummy.SOURCE_HEIGHT)
-        g.drawImage(mummy.deckImage, 0, 0, mummy.DESTINATION_WIDTH, mummy.DESTINATION_HEIGHT, sourceX, sourceY, sourceX + mummy.SOURCE_WIDTH, sourceY + mummy.SOURCE_HEIGHT)
+        g.drawImage(mummy.deckImage, 0, 0, mummy.DESTINATION_WIDTH, mummy.DESTINATION_HEIGHT, sourceX, sourceY, sourceX + mummy.SOURCE_WIDTH, sourceY + mummy.SOURCE_HEIGHT, null)
         return returnValue
     }
 }

@@ -65,16 +65,17 @@ public class MainWindow {
         frame.getContentPane().add(btnNewButton);
 
         DeckImage deckImage = new DeckImage();
+        PlayingCardImageResolver playingCardImageResolver = new PlayingCardImageResolver();
 
         btnNewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PlayingCard playingCard1 = deckOfCards.draw();
-                BufferedImage cardImage1 = deckImage.getImage(playingCard1);
+                BufferedImage cardImage1 = playingCardImageResolver.resolveImage(playingCard1);
                 cardLabel1.setIcon(new ImageIcon(cardImage1));
 
                 PlayingCard playingCard2 = deckOfCards.draw();
-                BufferedImage cardImage2 = deckImage.getImage(playingCard2);
+                BufferedImage cardImage2 = playingCardImageResolver.resolveImage(playingCard2);
                 cardLabel2.setIcon(new ImageIcon(cardImage2));
 
             }
