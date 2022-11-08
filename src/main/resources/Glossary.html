@@ -16,10 +16,30 @@
         </tr>
         <tr>
             <td>Game started</td><td>After the layout phase has ended, the game starts</td>
-52
         </tr>
         <tr>
-            <td>Stock Pile</td><td>Pile of cards, holds the cards that remains after  the cards have been placed in their initial positions</td>
+            <td>Stock Pile</td><td>Pile of cards, holds the cards that remains after the cards have been laid out in their initial positions</td>
+        </tr>
+        <tr>
+            <td>Waste Pile</td><td>Pile of cards, initially empty, holds the cards picked from the Stock pile (face up), during the game once started. The topmost card is free to be moved to a foundation pile or a tableau pile according to the color/suit/rank rules which apply</td>
+        </tr>
+        <tr>
+            <td>Foundation Pile</td><td>Pile of cards, initially empty, as many as there are different suits (4). Opens with an ace, other cards must follow suit and must be one higher than the preceding card</td>
+        </tr>
+        <tr>
+            <td>Tableau Pile</td><td>
+            Pile of cards. 7 tableau piles exist.<br/>
+            In layout phase:
+            Initial capacity one of each (1..7) size.
+            Laid out in a fan with 1 to 7 cards.
+            Only the topmost card is face up, remaining cards (if applicable) are face down.
+            No rules apply as to color suit or value in the layout phase
+            <br/>
+            When game starts:
+            Cards from waste pile, foundation piles and other tableau piles can be put on top of the pile if they have value decreasing by 1 and if they differ in color (Red/Black) compared to the preceding card.
+            Cards can be taken from the tableau pile if they fit on top of another tableau pile, or if they fit on top of a foundation pile. Cards taken must be placed on either another tableau pile or on a foundation pile. Cards cannot be moved from a tableau pile to the waste pile.
+            If the resulting topmost card of a tableau pile is face down (after the preceding topmost card is moved) it is flipped to be face up. Possible remaining face down cards are left as is.
+            If pile is cleared it can be reopened only with a King</td>
 
         </tr>
     </table>
