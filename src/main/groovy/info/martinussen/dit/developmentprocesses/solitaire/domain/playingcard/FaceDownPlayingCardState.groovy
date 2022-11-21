@@ -24,6 +24,16 @@ class FaceDownPlayingCardState implements PlayingCardState {
     }
 
     @Override
+    void faceUp() {
+        receivingObject.currentState = receivingObject.faceUpPlayingCardState
+    }
+
+    @Override
+    void faceDown() {
+        receivingObject.currentState = receivingObject.faceDownPlayingCardState
+    }
+
+    @Override
     Color getColor() {
         return null
     }

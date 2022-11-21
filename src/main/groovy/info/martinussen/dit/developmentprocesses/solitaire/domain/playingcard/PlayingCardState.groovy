@@ -6,7 +6,7 @@ import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Pl
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Rank
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Suit
 
-interface PlayingCardState extends Comparable{
+interface PlayingCardState extends Comparable {
 
     Rank getRank()
     Integer getValue()
@@ -15,6 +15,8 @@ interface PlayingCardState extends Comparable{
     Boolean isFaceDown()
     Boolean isFaceUp()
     PlayingCardAttributes getAttributes()
+    void faceUp()
+    void faceDown()
 
     Boolean hasSameColor(PlayingCard card)
     Boolean hasSameSuit(PlayingCard card)

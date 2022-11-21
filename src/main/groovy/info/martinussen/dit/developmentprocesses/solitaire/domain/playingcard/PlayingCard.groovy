@@ -9,84 +9,88 @@ import groovy.transform.PackageScope
  * Natural order of suits are Diamonds, Clubs, Hearts, Spades (in ascending order)
  */
 class PlayingCard implements Comparable {
+
     @PackageScope
     final Suit _suit
     @PackageScope
     final Rank _rank
-    PlayingCardState state
 
+    PlayingCardState currentState
+    PlayingCardState faceDownPlayingCardState
+    PlayingCardState faceUpPlayingCardState
 
     PlayingCard(Rank rank, Suit suit){
         _rank = rank
         _suit = suit
-        this.state = new FaceUpPlayingCardState(this) // initial state
+        this.faceDownPlayingCardState = new FaceDownPlayingCardState(this)
+        this.faceUpPlayingCardState   = new FaceUpPlayingCardState(this)
+        this.currentState             = faceUpPlayingCardState // initial state
     }
 
     Color getColor(){
-        return state.getColor()
+        return currentState.getColor()
     }
 
     Integer getValue(){
-        return state.getValue()
+        return currentState.getValue()
     }
 
     Rank getRank() {
-        return state.getRank()
+        return currentState.getRank()
     }
 
     Suit getSuit() {
-        return state.getSuit()
+        return currentState.getSuit()
     }
 
     PlayingCard faceDown(){
-        this.state = new FaceDownPlayingCardState(this)
+        this.currentState.faceDown()
         return this
     }
 
     PlayingCard faceUp(){
-        this.state = new FaceUpPlayingCardState(this)
+        this.currentState.faceUp()
         return this
     }
 
     Boolean isFaceDown(){
-        return state.isFaceDown()
+        return currentState.isFaceDown()
     }
 
     Boolean isFaceUp() {
-        return state.isFaceUp()
+        return currentState.isFaceUp()
     }
 
     String toString(){
-        return state.toString()
+        return currentState.toString()
     }
 
     String toShortString(){
-        return state.toShortString()
+        return currentState.toShortString()
     }
 
     Boolean hasSameColor(PlayingCard that){
         assert that
-        state.hasSameColor(that)
+        currentState.hasSameColor(that)
     }
 
     Boolean hasSameSuit(PlayingCard that){
         assert that
-        state.hasSameSuit(that)
+        currentState.hasSameSuit(that)
     }
 
     @Override
     boolean equals(Object that){
-        state.equals(that)
+        currentState.equals(that)
     }
 
     @Override
     int compareTo(Object o) {
-        state.compareTo(o)
+        currentState.compareTo(o)
     }
 
-
     PlayingCardAttributes getAttributes() {
-        state.getAttributes()
+        currentState.getAttributes()
     }
 }
 
