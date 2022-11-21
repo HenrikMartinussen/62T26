@@ -81,6 +81,26 @@ class PlayingCardSpec extends Specification{
         sevenOfDiamonds.value == 7
     }
 
+    def 'playingCard which is flipped face down should be able to return its corresponding attribute container, containing expected values'(){
+        given:
+        def queenOfHearts = new PlayingCard(QUEEN, HEARTS)
+        assert queenOfHearts.isFaceUp()
+        queenOfHearts.faceDown()
+        assert queenOfHearts.isFaceDown()
+
+        when:
+        def queenOfHeartsAttributes = queenOfHearts.getAttributes()
+
+        then:
+        queenOfHeartsAttributes.value    == 12
+        queenOfHeartsAttributes.rank     == QUEEN
+        queenOfHeartsAttributes.suit     == HEARTS
+        queenOfHeartsAttributes.color    == RED
+        queenOfHeartsAttributes.faceDown == true
+        queenOfHeartsAttributes.faceUp   == false
+    }
+
+
     def 'playingCards with the same suit and rank are considered equal'(){
         given:
         def card1 = new PlayingCard(KING, DIAMONDS)
@@ -173,7 +193,7 @@ class PlayingCardSpec extends Specification{
 
     }
 
-    def 'playingCards with different suit (and hence different color) (but same rank) are expected to report that fact when asked'(){
+    def 'playingCards with different suit and different color (but same rank) are expected to report that fact when asked'(){
         given:
         def card1 = new PlayingCard(TEN, CLUBS)
         def card2 = new PlayingCard(TEN, DIAMONDS)
