@@ -84,7 +84,7 @@ class RankRuleSpec extends Specification {
         rankRule.isValid(sevenOfClubs.attributes)
     }
 
-    def 'When rank is already at minimum, Rank rule should react to decrement operator  by keeping the accepted rank (ACE)'() {
+    def 'When rank is already at minimum, Rank rule should react to decrement operator by keeping the accepted rank (ACE)'() {
         given:
         def rankRule = new RankRule(Rank.TWO)
         def twoOfSpades = new PlayingCard(Rank.TWO, Suit.SPADES)

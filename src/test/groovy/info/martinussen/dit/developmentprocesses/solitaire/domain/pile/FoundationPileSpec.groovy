@@ -7,6 +7,10 @@ import org.codehaus.groovy.runtime.powerassert.PowerAssertionError
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import static info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Rank.*
+import static info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Rank.QUEEN
+import static info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Suit.*
+
 class FoundationPileSpec extends Specification {
 
     @Unroll
@@ -20,7 +24,7 @@ class FoundationPileSpec extends Specification {
         !foundationPile.isComplete()
 
         where:
-        suit << (Suit.DIAMONDS..Suit.SPADES)
+        suit << (DIAMONDS..SPADES)
     }
 
     @Unroll
@@ -31,50 +35,50 @@ class FoundationPileSpec extends Specification {
         assert !spadesFoundationPile.isComplete()
 
         expect:
-        spadesFoundationPile.isAcceptable(new PlayingCard(Rank.ACE, suit).attributes)
+        spadesFoundationPile.isAcceptable(new PlayingCard(ACE, suit).attributes)
 
         where:
-        suit << (Suit.DIAMONDS..Suit.SPADES)
+        suit << (DIAMONDS..SPADES)
     }
 
     @Unroll
     def 'empty Spades foundation pile should answer that Ace of another suit (e.g. #suit) would not be accepted, if added'() {
         given:
-        def spadesFoundationPile = new FoundationPile(Suit.SPADES)
+        def spadesFoundationPile = new FoundationPile(SPADES)
 
         expect:
-        !spadesFoundationPile.isAcceptable(new PlayingCard(Rank.ACE, suit).attributes)
+        !spadesFoundationPile.isAcceptable(new PlayingCard(ACE, suit).attributes)
 
         where:
-        suit << (Suit.DIAMONDS..Suit.HEARTS)
+        suit << (DIAMONDS..HEARTS)
     }
 
     @Unroll
     def 'empty foundation pile should answer that a face down Ace of its designated suit (e.g. #suit) would not be accepted'() {
         given:
         def foundationPile = new FoundationPile(suit)
-        def faceDownAce = new PlayingCard(Rank.ACE, suit).faceDown()
+        def faceDownAce = new PlayingCard(ACE, suit).faceDown()
 
         expect:
         !foundationPile.isAcceptable(faceDownAce.attributes)
 
         where:
-        suit << (Suit.DIAMONDS..Suit.SPADES)
+        suit << (DIAMONDS..SPADES)
     }
 
     def 'empty foundation pile should accept Ace of its designated suit to be added to the pile'() {
         given:
-        def spadesFoundationPile = new FoundationPile(Suit.SPADES)
+        def spadesFoundationPile = new FoundationPile(SPADES)
         assert spadesFoundationPile.isEmpty()
         assert !spadesFoundationPile.isComplete()
 
         when:
-        spadesFoundationPile.addCard(new PlayingCard(Rank.ACE, Suit.SPADES))
+        spadesFoundationPile.addCard(new PlayingCard(ACE, SPADES))
         def topOfPile = spadesFoundationPile.peek()
 
         then:
-        topOfPile.suit == Suit.SPADES
-        topOfPile.rank == Rank.ACE
+        topOfPile.rank == ACE
+        topOfPile.suit == SPADES
         !topOfPile.faceDown
         topOfPile.faceUp
         !spadesFoundationPile.isEmpty()
@@ -84,8 +88,8 @@ class FoundationPileSpec extends Specification {
     @Unroll
     def 'empty foundation pile should throw an error when it is attempted to add an Ace of a suit (e.g. #suit) other than its designated suit'() {
         given:
-        def spadesFoundationPile = new FoundationPile(Suit.SPADES)
-        def offSuitAce = new PlayingCard(Rank.ACE, suit)
+        def spadesFoundationPile = new FoundationPile(SPADES)
+        def offSuitAce = new PlayingCard(ACE, suit)
 
         assert !spadesFoundationPile.isAcceptable(offSuitAce.attributes)
 
@@ -96,7 +100,7 @@ class FoundationPileSpec extends Specification {
         thrown PowerAssertionError
 
         where:
-        suit << (Suit.DIAMONDS..Suit.HEARTS)
+        suit << (DIAMONDS..HEARTS)
     }
 
     @Unroll
@@ -104,7 +108,7 @@ class FoundationPileSpec extends Specification {
         given:
         def foundationPile = new FoundationPile(suit)
 
-        def faceDownAceOfCorrectSuit = new PlayingCard(Rank.ACE, suit).faceDown()
+        def faceDownAceOfCorrectSuit = new PlayingCard(ACE, suit).faceDown()
         assert !foundationPile.isAcceptable(faceDownAceOfCorrectSuit.attributes)
 
         when:
@@ -114,13 +118,13 @@ class FoundationPileSpec extends Specification {
         thrown PowerAssertionError
 
         where:
-        suit << (Suit.DIAMONDS..Suit.SPADES)
+        suit << (DIAMONDS..SPADES)
     }
 
     @Unroll
     def 'empty foundation pile should report when asked that #rank is not accepted as its first card'() {
         given:
-        def suit = Suit.SPADES
+        def suit = SPADES
         def spadeFoundationPile = new FoundationPile(suit)
         def unexpectedRankCard = new PlayingCard(rank, suit) // correct suit, but unexpected rank
 
@@ -132,13 +136,13 @@ class FoundationPileSpec extends Specification {
         result == false
 
         where:
-        rank << (Rank.TWO..Rank.KING)
+        rank << (TWO..KING)
     }
 
     @Unroll
     def 'empty foundation pile should throw an error if it is attempted to add #rank, as its first card'() {
         given:
-        def suit = Suit.SPADES
+        def suit = SPADES
         def spadeFoundationPile = new FoundationPile(suit)
         def unexpectedRankCard = new PlayingCard(rank, suit) // correct suit, but unexpected rank
 
@@ -151,20 +155,20 @@ class FoundationPileSpec extends Specification {
         thrown PowerAssertionError
 
         where:
-        rank << (Rank.TWO..Rank.KING)
+        rank << (TWO..KING)
     }
 
     def 'foundation pile in progress should report that a card out of rank is not acceptable'() {
         given: 'a foundation pile in progress, holding cards up to, and including, Five (5)'
-        Suit suit = Suit.SPADES
+        Suit suit = SPADES
 
         def spadeFoundationPile = new FoundationPile(suit)
 
-        (Rank.ACE..Rank.FIVE).each{rank ->
+        (ACE..FIVE).each{ rank ->
             spadeFoundationPile.addCard new PlayingCard(rank, suit)
         }
 
-        def cardOutOfRank = new PlayingCard(Rank.EIGHT, suit)
+        def cardOutOfRank = new PlayingCard(EIGHT, suit)
 
         when: 'you ask the foundation pile if a card out of rank, specifically eight (8), is acceptable... '
         def response = spadeFoundationPile.isAcceptable(cardOutOfRank.attributes)
@@ -176,15 +180,15 @@ class FoundationPileSpec extends Specification {
 
     def 'foundation pile in progress should throw an error if it is attempted to add a card out of rank'() {
         given: 'a foundation pile in progress, holding cards up to, and including, Five (5)'
-        Suit suit = Suit.SPADES
+        Suit suit = SPADES
 
         def spadeFoundationPile = new FoundationPile(suit)
 
-        (Rank.ACE..Rank.FIVE).each{rank ->
+        (ACE..FIVE).each{ rank ->
             spadeFoundationPile.addCard new PlayingCard(rank, suit)
         }
 
-        def cardOutOfRank = new PlayingCard(Rank.EIGHT, suit)
+        def cardOutOfRank = new PlayingCard(EIGHT, suit)
         assert !spadeFoundationPile.isAcceptable(cardOutOfRank.attributes)
 
         when: 'you, despite it not being acceptable, add a card out of rank, specifically eight (8)'
@@ -196,14 +200,14 @@ class FoundationPileSpec extends Specification {
 
     def 'foundation pile in progress should report that a card of wrong suit is not acceptable'() {
         given: 'a Spades foundation pile in progress, holding cards up to, and including, Five of Spades '
-        def spadeFoundationPile = new FoundationPile(Suit.SPADES)
+        def spadeFoundationPile = new FoundationPile(SPADES)
 
-        (Rank.ACE..Rank.FIVE).each{rank ->
-            spadeFoundationPile.addCard new PlayingCard(rank, Suit.SPADES)
+        (ACE..FIVE).each{ rank ->
+            spadeFoundationPile.addCard new PlayingCard(rank, SPADES)
         }
 
         when: 'you ask the foundation pile if a card of expected rank, but with wrong suit, is acceptable... '
-        def wrongSuitCard = new PlayingCard(Rank.SIX, Suit.DIAMONDS)
+        def wrongSuitCard = new PlayingCard(SIX, DIAMONDS)
         def response = spadeFoundationPile.isAcceptable(wrongSuitCard.attributes)
 
         then:
@@ -213,12 +217,12 @@ class FoundationPileSpec extends Specification {
 
     def 'foundation pile in progress should throw an error when you attempt to add a card of wrong suit'() {
         given: 'a Spades foundation pile in progress, holding cards up to, and including, Five of Spades '
-        def spadeFoundationPile = new FoundationPile(Suit.SPADES)
+        def spadeFoundationPile = new FoundationPile(SPADES)
 
-        (Rank.ACE..Rank.FIVE).each{rank ->
-            spadeFoundationPile.addCard new PlayingCard(rank, Suit.SPADES)
+        (ACE..FIVE).each{ rank ->
+            spadeFoundationPile.addCard new PlayingCard(rank, SPADES)
         }
-        def wrongSuitCard = new PlayingCard(Rank.SIX, Suit.DIAMONDS)
+        def wrongSuitCard = new PlayingCard(SIX, DIAMONDS)
 
         assert !spadeFoundationPile.isAcceptable(wrongSuitCard.attributes)
 
@@ -231,80 +235,80 @@ class FoundationPileSpec extends Specification {
 
     def 'foundation pile holding two cards should return info regarding the latest added card when peeked'(){
         given:
-        def foundationPile = new FoundationPile(Suit.HEARTS)
-        foundationPile.addCard(new PlayingCard(Rank.ACE, Suit.HEARTS))
-        foundationPile.addCard(new PlayingCard(Rank.TWO, Suit.HEARTS))
+        def foundationPile = new FoundationPile(HEARTS)
+        foundationPile.addCard(new PlayingCard(ACE, HEARTS))
+        foundationPile.addCard(new PlayingCard(TWO, HEARTS))
 
         when:
         def topOfPile = foundationPile.peek()
 
         then:
-        topOfPile.suit == Suit.HEARTS
-        topOfPile.rank == Rank.TWO
+        topOfPile.rank == TWO
+        topOfPile.suit == HEARTS
     }
 
     def 'foundation pile holding three cards should return info regarding the latest added card when peeked'(){
         given:
-        def foundationPile = new FoundationPile(Suit.HEARTS)
-        foundationPile.addCard(new PlayingCard(Rank.ACE, Suit.HEARTS))
-        foundationPile.addCard(new PlayingCard(Rank.TWO, Suit.HEARTS))
-        foundationPile.addCard(new PlayingCard(Rank.THREE, Suit.HEARTS))
+        def foundationPile = new FoundationPile(HEARTS)
+        foundationPile.addCard(new PlayingCard(ACE, HEARTS))
+        foundationPile.addCard(new PlayingCard(TWO, HEARTS))
+        foundationPile.addCard(new PlayingCard(THREE, HEARTS))
 
         when:
         def topOfPile = foundationPile.peek()
 
         then:
-        topOfPile.suit == Suit.HEARTS
-        topOfPile.rank == Rank.THREE
+        topOfPile.rank == THREE
+        topOfPile.suit == HEARTS
     }
 
     def 'foundation pile should hand out cards according to LIFO principle'(){
         given:
-        def foundationPile = new FoundationPile(Suit.HEARTS)
-        foundationPile.addCard(new PlayingCard(Rank.ACE, Suit.HEARTS))
-        foundationPile.addCard(new PlayingCard(Rank.TWO, Suit.HEARTS))
-        foundationPile.addCard(new PlayingCard(Rank.THREE, Suit.HEARTS)) // Last In
+        def foundationPile = new FoundationPile(HEARTS)
+        foundationPile.addCard(new PlayingCard(ACE, HEARTS))
+        foundationPile.addCard(new PlayingCard(TWO, HEARTS))
+        foundationPile.addCard(new PlayingCard(THREE, HEARTS)) // Last In...
 
         when:
         def card = foundationPile.takeCard()
 
-        then:
-        card.suit == Suit.HEARTS
-        card.rank == Rank.THREE
+        then: '... First Out'
+        card.rank == THREE
+        card.suit == HEARTS
 
         when:
         card = foundationPile.takeCard()
 
         then:
-        card.suit == Suit.HEARTS
-        card.rank == Rank.TWO
+        card.rank == TWO
+        card.suit == HEARTS
 
         when:
         card = foundationPile.takeCard()
 
         then:
-        card.suit == Suit.HEARTS
-        card.rank == Rank.ACE
+        card.rank == ACE
+        card.suit == HEARTS
     }
 
     def 'foundation pile should indicate it is complete when it has been built up to and including "King"'(){
         given:
-        def suit = Suit.DIAMONDS
+        def suit = DIAMONDS
         def foundationPile = new FoundationPile(suit)
         assert foundationPile.isEmpty()
         assert !foundationPile.isComplete()
 
         and:
-        (Rank.ACE..Rank.QUEEN).each { rank ->
+        (ACE..QUEEN).each { rank ->
             foundationPile.addCard(new PlayingCard(rank, suit))
             assert !foundationPile.isEmpty()
             assert !foundationPile.isComplete()
         }
 
-        when:
-        foundationPile.addCard(new PlayingCard(Rank.KING, suit))
+        when: 'topmost card of the foundation pile suit is added...'
+        foundationPile.addCard(new PlayingCard(KING, suit))
 
-        then:
+        then: 'the foundation pile changes state to complete'
         !foundationPile.isEmpty()
         foundationPile.isComplete()
 
