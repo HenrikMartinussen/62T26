@@ -1,5 +1,6 @@
-package info.martinussen.dit.developmentprocesses.solitaire.domain
+package info.martinussen.dit.developmentprocesses.solitaire.domain.pile
 
+import info.martinussen.dit.developmentprocesses.solitaire.domain.DeckOfCards
 import info.martinussen.dit.developmentprocesses.solitaire.domain.pile.StockPile
 import info.martinussen.dit.developmentprocesses.solitaire.domain.pile.WastePile
 import spock.lang.Specification
