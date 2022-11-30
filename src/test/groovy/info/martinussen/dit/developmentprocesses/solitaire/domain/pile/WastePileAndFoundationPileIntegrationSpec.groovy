@@ -11,12 +11,15 @@ class WastePileAndFoundationPileIntegrationSpec extends Specification {
         given: 'an empty waste pile'
         def wastePile = new WastePile()
         assert wastePile.isEmpty()
+
         and: 'a new deck of cards, shuffled'
         def deck = new DeckOfCards().shuffle()
+
         and: 'a stock pile gets all of the cards (face down)'
         def stockPile = new StockPile()
         stockPile.putCards deck.getRemainingCards().collect {it.faceDown()}
         assert stockPile.hasMoreCards()
+
         and: 'we move cards from the stockPile to the wastePile one at the time, until we get an Ace'
         def move = stockPile.createMoveObject()
         move.setTarget(wastePile)
@@ -30,19 +33,22 @@ class WastePileAndFoundationPileIntegrationSpec extends Specification {
             move.execute()
             assert move.isSuccess()
             attributes = wastePile.peek()
+            println attributes
         }
         assert attributes.rank == Rank.ACE
         def foundationPile = new FoundationPile(attributes.suit)
         assert foundationPile.isEmpty()
 
         when:
-        def foundationPileMove = wastePile.createMoveObject()
-        foundationPileMove.setTarget(foundationPile)
-        foundationPileMove.execute()
+        def wastePileTofoundationPileMove = wastePile.createMoveObject()
+        wastePileTofoundationPileMove.setTarget(foundationPile)
+        wastePileTofoundationPileMove.execute()
 
         then:
-        foundationPileMove.isSuccess()
+        wastePile.peek().rank != Rank.ACE
+        wastePileTofoundationPileMove.isSuccess()
         foundationPile.hasMoreCards()
+        println foundationPile.peek()
         foundationPile.peek().rank == Rank.ACE
 
     }

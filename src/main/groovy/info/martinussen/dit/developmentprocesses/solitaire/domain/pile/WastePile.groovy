@@ -1,5 +1,6 @@
 package info.martinussen.dit.developmentprocesses.solitaire.domain.pile
 
+import info.martinussen.dit.developmentprocesses.solitaire.domain.SingleCardMove
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCard
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCardAttributes
 import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.FaceUpRule
@@ -28,5 +29,10 @@ class WastePile extends Pile {
             returnValue = true
         }
         return returnValue
+    }
+
+    SingleCardMove createMoveObject() {
+        def moveObject = new SingleCardMove(this)
+        return moveObject
     }
 }
