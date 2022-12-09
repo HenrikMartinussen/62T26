@@ -55,7 +55,6 @@ public class MainWindow {
         cardLabel1.setBounds(10, 11, 100, 147);
         frame.getContentPane().add(cardLabel1);
 
-
         JLabel cardLabel2 = new JLabel("Image goes here");
         cardLabel2.setBounds(120, 11, 100, 147);
         frame.getContentPane().add(cardLabel2);
@@ -73,7 +72,7 @@ public class MainWindow {
             public void actionPerformed(ActionEvent e) {
                 PlayingCard playingCard1 = deckOfCards.draw();
                 System.out.println(playingCard1);
-                BufferedImage cardImage1 = PlayingCardImageResolver.getInstance(playingCard1.faceDown()).resolveImage(playingCard1.faceDown());
+                BufferedImage cardImage1 = PlayingCardImageResolver.getInstance(playingCard1).resolveImage(playingCard1);
                 cardLabel1.setIcon(new ImageIcon(cardImage1));
 
                 PlayingCard playingCard2 = deckOfCards.draw();
@@ -83,7 +82,7 @@ public class MainWindow {
 
                 PlayingCard playingCard3 = deckOfCards.draw();
                 System.out.println(playingCard3);
-                BufferedImage cardImage3 = PlayingCardImageResolver.getInstance(null).resolveImage(null);;
+                BufferedImage cardImage3 = PlayingCardImageResolver.getInstance(playingCard3).resolveImage(playingCard3);
                 cardLabel3.setIcon(new ImageIcon(cardImage3));
 
             }
