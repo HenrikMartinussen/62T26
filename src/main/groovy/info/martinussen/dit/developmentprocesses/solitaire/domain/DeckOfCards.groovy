@@ -1,16 +1,19 @@
 package info.martinussen.dit.developmentprocesses.solitaire.domain
 
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCard
-import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Rank
-import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Suit
+
+import static info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Rank.ACE
+import static info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Rank.KING
+import static info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Suit.CLUBS
+import static info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Suit.SPADES
 
 class DeckOfCards {
     List cards
 
     DeckOfCards(){
         cards = [] // shorthand for new ArrayList()
-        (Suit.SPADES..Suit.CLUBS).each{ suit ->
-            (Rank.ACE..Rank.KING).each{ rank ->
+        (SPADES..CLUBS).each{ suit ->
+            (ACE..KING).each{ rank ->
                 cards << new PlayingCard(rank, suit)
             }
         }
@@ -31,7 +34,9 @@ class DeckOfCards {
     }
 
     List getRemainingCards() {
-        return cards
+        def returnValue = cards.clone()
+        cards = []
+        return returnValue
     }
 
     Boolean isEmpty(){
