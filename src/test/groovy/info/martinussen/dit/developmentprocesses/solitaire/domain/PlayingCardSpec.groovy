@@ -128,13 +128,13 @@ class PlayingCardSpec extends Specification{
 
     def 'playingCards are sorted according to Rank (and hence value) as expected'() {
         given:
-        def cards = [new PlayingCard(THREE, CLUBS),
-                     new PlayingCard(TWO,   CLUBS),
-                     new PlayingCard(EIGHT, CLUBS),
-                     new PlayingCard(SEVEN, CLUBS),
-                     new PlayingCard(KING,  CLUBS),
-                     new PlayingCard(JACK,  CLUBS),
-                     new PlayingCard(ACE,   CLUBS)]
+        List cards = [new PlayingCard(THREE, CLUBS),
+                      new PlayingCard(TWO,   CLUBS),
+                      new PlayingCard(EIGHT, CLUBS),
+                      new PlayingCard(SEVEN, CLUBS),
+                      new PlayingCard(KING,  CLUBS),
+                      new PlayingCard(JACK,  CLUBS),
+                      new PlayingCard(ACE,   CLUBS)]
 
         when:
         cards.sort()
@@ -151,10 +151,10 @@ class PlayingCardSpec extends Specification{
 
     def 'playingCards are sorted according to Suit as expected'() {
         given:
-        def cards = [new PlayingCard(ACE, CLUBS),
-                     new PlayingCard(ACE, SPADES),
-                     new PlayingCard(ACE, HEARTS),
-                     new PlayingCard(ACE, DIAMONDS)]
+        List cards = [new PlayingCard(ACE, CLUBS),
+                      new PlayingCard(ACE, SPADES),
+                      new PlayingCard(ACE, HEARTS),
+                      new PlayingCard(ACE, DIAMONDS)]
 
         when:
         cards.sort()

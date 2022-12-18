@@ -2,7 +2,7 @@ package info.martinussen.dit.developmentprocesses.solitaire.domain.pile
 
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCard
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCardAttributes
-import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.FaceUpRule
+import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.FaceRule
 import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.Rule
 
 class LayoutPhaseTableauPileState implements TableauPileState {
@@ -14,9 +14,9 @@ class LayoutPhaseTableauPileState implements TableauPileState {
         this.receivingObject = receivingObject
 
         if (receivingObject.initialSize == 1) {
-            faceUpRule = new FaceUpRule(true)
+            faceUpRule = new FaceRule(true)
         } else {
-            faceUpRule = new FaceUpRule(false)
+            faceUpRule = new FaceRule(false)
         }
 
     }
@@ -45,7 +45,7 @@ class LayoutPhaseTableauPileState implements TableauPileState {
         receivingObject.cards.push(card)
 
         if (receivingObject.cards.size() == receivingObject.initialSize - 1 && !receivingObject.layoutComplete) {
-            faceUpRule = new FaceUpRule(true)
+            faceUpRule = new FaceRule(true)
         }
 
         if (receivingObject.cards.size() == receivingObject.initialSize && !receivingObject.layoutComplete) {

@@ -4,7 +4,7 @@ import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Pl
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCardAttributes
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Rank
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Suit
-import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.FaceUpRule
+import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.FaceRule
 import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.RankRule
 import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.Rule
 import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.SuitRule
@@ -22,7 +22,7 @@ class FoundationPile extends Pile {
         this.suit = suit
         suitRule         = new SuitRule(suit)
         rankRule         = new RankRule(Rank.ACE)
-        faceUpRule       = new FaceUpRule(true)
+        faceUpRule       = new FaceRule(true)
         pileCompleteRule = new RankRule(Rank.KING)
         cards = []
     }

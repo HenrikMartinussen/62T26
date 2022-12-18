@@ -13,12 +13,13 @@ abstract class PlayingCardImageResolver {
     static final Integer SOURCE_HEIGHT      = 540;
     static final Integer DESTINATION_WIDTH  = 100;
     static final Integer DESTINATION_HEIGHT = 147;
-    static final Integer OFFSET             = 30;
+    static final Integer X_OFFSET           = 38;
+    static final Integer Y_OFFSET           = 30;
     static final Integer MARGIN             = 30;
 
-    static PlayingCardImageResolver       emptyPlayingCardImageResolver    = new EmptyPlayingCardImageResolver()
-    static PlayingCardImageResolver       faceDownPlayingCardImageResolver = new FaceDownPlayingCardImageResolver()
-    static FaceUpPlayingCardImageResolver faceUpPlayingCardImageResolver   = new FaceUpPlayingCardImageResolver()
+    static PlayingCardImageResolver emptyPlayingCardImageResolver    = new EmptyPlayingCardImageResolver()
+    static PlayingCardImageResolver faceDownPlayingCardImageResolver = new FaceDownPlayingCardImageResolver()
+    static PlayingCardImageResolver faceUpPlayingCardImageResolver   = new FaceUpPlayingCardImageResolver()
 
     static def deckImage
 
@@ -62,11 +63,11 @@ abstract class PlayingCardImageResolver {
     }
 
     Integer calculateXValue (PlayingCard playingCard) {
-        OFFSET + (calculateXIndex(playingCard) * (SOURCE_WIDTH + MARGIN))
+        X_OFFSET + (calculateXIndex(playingCard) * (SOURCE_WIDTH + MARGIN))
     }
 
     Integer calculateYValue (PlayingCard playingCard) {
-        OFFSET + (calculateYIndex(playingCard) * (SOURCE_HEIGHT + MARGIN))
+        Y_OFFSET + (calculateYIndex(playingCard) * (SOURCE_HEIGHT + MARGIN))
     }
 
     abstract Integer calculateXIndex(PlayingCard playingCard)

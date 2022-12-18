@@ -63,7 +63,7 @@ class ColorRuleSpec extends Specification {
         [rank, suit] << [(ACE..KING).toList(), [DIAMONDS, HEARTS]].combinations()
     }
 
-    def 'ColorRule should react to the increment operator by accepting the opposite color'() {
+    def 'ColorRule RED should react to the increment operator by accepting color BLACK'() {
         given:
         def colorRule = new ColorRule(RED)
         def redCard = new PlayingCard(ACE, DIAMONDS)
@@ -79,7 +79,7 @@ class ColorRuleSpec extends Specification {
         !colorRule.isValid(redCard.attributes)
     }
 
-    def 'ColorRule should react to the decrement operator by accepting the opposite color'() {
+    def 'ColorRule RED should react to the decrement operator by accepting color BLACK'() {
         given:
         def colorRule = new ColorRule(RED)
         def redCard = new PlayingCard(ACE, HEARTS)
@@ -93,6 +93,38 @@ class ColorRuleSpec extends Specification {
         then:
         colorRule.isValid(blackCard.attributes)
         !colorRule.isValid(redCard.attributes)
+    }
+
+    def 'ColorRule BLACK should react to the increment operator by accepting color RED'() {
+        given:
+        def colorRule = new ColorRule(BLACK)
+        def redCard = new PlayingCard(SEVEN, HEARTS)
+        def blackCard = new PlayingCard(QUEEN, CLUBS)
+        assert colorRule.isValid(blackCard.attributes)
+        assert !colorRule.isValid(redCard.attributes)
+
+        when:
+        colorRule.next()
+
+        then:
+        colorRule.isValid(redCard.attributes)
+        !colorRule.isValid(blackCard.attributes)
+    }
+
+    def 'ColorRule BLACK should react to the decrement operator by accepting color RED'() {
+        given:
+        def colorRule = new ColorRule(BLACK)
+        def redCard = new PlayingCard(SIX, DIAMONDS)
+        def blackCard = new PlayingCard(NINE, SPADES)
+        assert colorRule.isValid(blackCard.attributes)
+        assert !colorRule.isValid(redCard.attributes)
+
+        when:
+        colorRule.previous()
+
+        then:
+        colorRule.isValid(redCard.attributes)
+        !colorRule.isValid(blackCard.attributes)
     }
 
 }
