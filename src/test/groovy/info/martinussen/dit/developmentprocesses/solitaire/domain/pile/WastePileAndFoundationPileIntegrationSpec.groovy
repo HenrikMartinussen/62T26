@@ -33,24 +33,24 @@ class WastePileAndFoundationPileIntegrationSpec extends Specification {
             move.execute()
             assert move.isSuccess()
             attributes = wastePile.peek()
-            println attributes
         }
         assert attributes.rank == Rank.ACE
+
+        and: 'we create a foundation pile of the suit of the Ace we found'
         def foundationPile = new FoundationPile(attributes.suit)
         assert foundationPile.isEmpty()
 
-        when:
+        when: 'we move the Ace we found to the foundation pile we just created'
         def wastePileTofoundationPileMove = wastePile.createMoveObject()
         wastePileTofoundationPileMove.setTarget(foundationPile)
         wastePileTofoundationPileMove.execute()
 
-        then:
-        wastePile.peek().rank != Rank.ACE
+        then: 'Ace is not on top of waste pile anymore, the move was a success, the foundation pile is not empty anymore and an Ace is on top of the foundation pile'
+        wastePile.peek()?.rank != Rank.ACE               // wastePile will be empty if the Ace was the first drawn card from the stockpile. As a consequence we must use null safe dereference
         wastePileTofoundationPileMove.isSuccess()
+        !foundationPile.isEmpty()
         foundationPile.hasMoreCards()
-        println foundationPile.peek()
         foundationPile.peek().rank == Rank.ACE
-
     }
 
 }
