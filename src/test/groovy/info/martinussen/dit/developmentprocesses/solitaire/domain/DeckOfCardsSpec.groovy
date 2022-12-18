@@ -4,7 +4,7 @@ import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Co
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Suit
 import spock.lang.Specification
 
-class DeckOfCardsSpec extends Specification{
+class DeckOfCardsSpec extends Specification {
 
     def 'new deck of cards should hold 52 cards, and when the last card has been drawn, the deck should be empty'(){
         given:

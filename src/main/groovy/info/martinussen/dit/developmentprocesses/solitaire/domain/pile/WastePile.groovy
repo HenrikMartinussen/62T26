@@ -2,7 +2,7 @@ package info.martinussen.dit.developmentprocesses.solitaire.domain.pile
 
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCard
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCardAttributes
-import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.FaceUpRule
+import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.FaceRule
 import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.Rule
 
 class WastePile extends Pile {
@@ -11,7 +11,7 @@ class WastePile extends Pile {
 
     WastePile() {
         this.cards = []
-        faceUpRule = new FaceUpRule(true) // the waste pile accepts only face up cards
+        faceUpRule = new FaceRule(true) // the waste pile accepts only face up cards
     }
 
     void addCard(PlayingCard card) {

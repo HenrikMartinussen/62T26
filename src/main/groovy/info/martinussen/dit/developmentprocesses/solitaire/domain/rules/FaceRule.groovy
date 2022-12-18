@@ -2,11 +2,11 @@ package info.martinussen.dit.developmentprocesses.solitaire.domain.rules
 
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCardAttributes
 
-class FaceUpRule implements Rule {
+class FaceRule implements Rule {
 
     Boolean faceUp
 
-    FaceUpRule(Boolean faceUp) {
+    FaceRule(Boolean faceUp) {
         this.faceUp = faceUp
     }
 

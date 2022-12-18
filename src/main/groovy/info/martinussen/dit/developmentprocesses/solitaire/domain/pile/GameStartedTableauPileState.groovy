@@ -3,10 +3,9 @@ package info.martinussen.dit.developmentprocesses.solitaire.domain.pile
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCard
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.PlayingCardAttributes
 import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Rank
-import info.martinussen.dit.developmentprocesses.solitaire.domain.playingcard.Suit
 import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.BlockingRule
 import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.ColorRule
-import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.FaceUpRule
+import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.FaceRule
 import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.NoOpRule
 import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.RankRule
 import info.martinussen.dit.developmentprocesses.solitaire.domain.rules.Rule
@@ -24,7 +23,7 @@ class GameStartedTableauPileState implements TableauPileState {
 
         colorRule  = new ColorRule(receivingObject.peek().suit.color).next() // next card should have opposite color than the topmost card on this pile
         rankRule   = new RankRule(receivingObject.peek().rank).previous()    // next card should have the next lower value than the topmost card on this pile
-        faceUpRule = new FaceUpRule(true)                            // while game is started, pile accepts only face up cards
+        faceUpRule = new FaceRule(true)                                      // while game is started, pile accepts only face up cards
     }
 
     @Override
