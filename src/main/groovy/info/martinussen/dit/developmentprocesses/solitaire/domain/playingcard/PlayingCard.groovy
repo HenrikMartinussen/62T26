@@ -6,7 +6,7 @@ import groovy.transform.PackageScope
  * Represents one of 52 unique playing cards of a deck of cards
  * Playing cards know their natural order (implements Comparable)
  * - lowest rank being Ace highest rank being King.
- * Natural order of suits are Diamonds, Clubs, Hearts, Spades (in ascending order)
+ * Natural order of suits are Spades, Hearts, Diamonds, Clubs (in ascending order)
  */
 class PlayingCard implements Comparable {
 

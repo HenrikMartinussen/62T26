@@ -34,7 +34,7 @@ class DeckOfCards {
     }
 
     List getRemainingCards() {
-        def returnValue = cards.clone()
+        List returnValue = cards.clone()
         cards = []
         return returnValue
     }
